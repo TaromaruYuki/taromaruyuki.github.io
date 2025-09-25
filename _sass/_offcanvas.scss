@@ -1,0 +1,28 @@
+.offcanvas {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    max-width: 100%;
+    transition: transform 0.3s ease-in-out;
+    width: 360px;
+    transform: translateX(-100%);
+    box-shadow: $level-2;
+    padding: 24px 28px;
+
+    @include themed() {
+        background-color: t($surface-variant);
+        color: t($on-surface-variant);
+    }
+
+    &.show {
+        transform: none;
+    }
+
+    & * {
+        margin-bottom: 8px;
+    }
+}

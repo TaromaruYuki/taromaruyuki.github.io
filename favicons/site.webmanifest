@@ -1,0 +1,15 @@
+{
+    "name": "TaromaruYuki",
+    "short_name": "TaromaruYuki",
+    "icons": [
+        {
+            "src": "/favicons/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffdf82",
+    "background_color": "#ffdf82",
+    "start_url": "https://taromaruyuki.cc/",
+    "display": "standalone"
+}

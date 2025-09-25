@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<div class="post">
+    <img src="/assets/images/posts/{{ page.image }}" alt="" class="img">
+
+    <h1 class="title">{{ page.title }}</h1>
+    <div class="info">
+        <span>{{ site.data.authors[page.author].display_name }}</span> | <span class="time">{{ page.date | date: "%s" }}</span>
+    </div>
+
+    <hr>
+
+    <div class="content">
+        {{ content }}
+    </div>
+</div>
+
+<script>
+    (() => {
+        const time = document.querySelector(".post>.info>.time");
+        const date = new Date(time.innerText * 1000);
+        time.innerText = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    })();
+</script>

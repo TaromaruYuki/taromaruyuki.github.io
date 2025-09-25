@@ -1,0 +1,25 @@
+---
+title: Socials
+layout: blank
+remove_margin: true
+---
+
+<a href="javascript:goBack()" class="btn primary mt-3 ms-3">Return to Website</a>
+
+<div class="d-flex justify-content-center align-items-center height-100">
+    <div class="card elevated flex-column justify-content-center col-11 col-md-8 col-lg-6">
+        <div class="content">
+            <div class="headline text-center">Social Media</div>
+            <hr class="mb-4">
+            <div class="row flex-column justify-content-center align-items-center height-100">
+                {% for social in site.data.socials %}
+                    <div class="col-8 col-md-7 col-lg-8 col-xl-6 mb-2">
+                        <a class="btn block text-center" href="{{ social.link }}" style="background-color: {{ social.color }}; color: {{ social.text }}">
+                            <i class="bi bi-{{ social.icon }}"></i> {{ social.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

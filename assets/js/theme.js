@@ -1,0 +1,1 @@
+const H=()=>{localStorage['p']=='dark'?document['documentElement']['classList']['value']='theme-dark':document['documentElement']['classList']['value']='theme-light';};if(localStorage['p']===undefined){const B=window['matchMedia']('(prefers-color-scheme:\x20dark)');B['matches']?localStorage['p']='dark':localStorage['p']='light';}H();

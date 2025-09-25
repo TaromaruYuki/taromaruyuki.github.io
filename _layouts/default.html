@@ -1,0 +1,26 @@
+---
+remove_margin: false
+---
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/script.js" defer></script>
+    {% feed_meta %}
+    {% seo %}
+    {% include favicon.html %}
+</head>
+{% if page.remove_margin %}
+<body class="margin-clear">
+{% else %}
+<body class="container mt-4">
+{% endif %}
+    {% include navigation.html %}
+    <main>{{ content }}</main>
+    <footer></footer>
+</body>
+</html>

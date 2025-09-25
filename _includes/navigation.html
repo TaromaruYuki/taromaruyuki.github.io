@@ -1,0 +1,50 @@
+<header>
+    <a href="/" class="logo reset">
+        <img src="/assets/images/logo.png" alt="TaromaruYuki" class="logo">
+        <span class="web-text">TaromaruYuki</span>
+    </a>
+
+    <nav>
+        <ul>
+            {% for item in site.data.navigation %}
+                <li>
+                    <a href="{{ item.link }}" {% if page.url == item.link %}class="btn primary"{% else %}class="btn secondary"{% endif %}>
+                        <i class="bi bi-{{ item.icon }}"></i>
+                        <span>{{ item.name }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <button class="btn tertiary bi bi-moon-stars-fill" id="theme"></button>
+
+    <button class="btn primary bi bi-list" id="offcanvas-toggle"></button>
+
+    <div class="offcanvas">
+        <button class="btn tertiary close bi bi-x"></button>
+        {% for item in site.data.navigation %}
+            <a href="{{ item.link }}" {% if page.url == item.link %}class="btn primary block"{% else %}class="btn secondary block"{% endif %}>
+                <i class="bi bi-{{ item.icon }}"></i>
+                <span>{{ item.name }}</span>
+            </a>
+        {% endfor %}
+    </div>
+
+    <script>
+        (() => {
+            const offcanvas = document.querySelector(".offcanvas");
+            document.querySelector("#offcanvas-toggle").addEventListener("click", () => {
+                if(!offcanvas.classList.contains("show")) {
+                    offcanvas.classList.add("show");
+                }
+            });
+
+            document.querySelector(".offcanvas>.close").addEventListener("click", () => {
+                if(offcanvas.classList.contains("show")) {
+                    offcanvas.classList.remove("show");
+                }
+            });
+        })();
+    </script>
+</header>

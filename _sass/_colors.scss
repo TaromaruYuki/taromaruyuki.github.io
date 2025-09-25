@@ -1,0 +1,203 @@
+// Light Mode
+
+$primary-light: #735c00;
+$on-primary-light: #ffffff;
+$primary-container-light: #ffe084;
+$on-primary-container-light: #231b00;
+
+$secondary-light: #685e40;
+$on-secondary-light: #ffffff;
+$secondary-container-light: #f1e1bb;
+$on-secondary-container-light: #221b04;
+
+$tertiary-light: #894587;
+$on-tertiary-light: #ffffff;
+$tertiary-container-light: #ffd6f7;
+$on-tertiary-container-light: #37003a;
+
+$error-light: #ba1a1a;
+$on-error-light: #ffffff;
+$error-container-light: #ffdad6;
+$on-error-container-light: #410002;
+
+$background-light: #fffbff;
+$on-background-light: #1e1b16;
+$surface-light: #fffbff;
+$on-surface-light: #1e1b16;
+
+$outline-light: #7d7667;
+$surface-variant-light: #ebe2cf;
+$on-surface-variant-light: #4c4639;
+
+// Dark Mode
+
+$primary-dark: #e8c349;
+$on-primary-dark: #3c2f00;
+$primary-container-dark: #574500;
+$on-primary-container-dark: #ffe084;
+
+$secondary-dark: #d4c5a1;
+$on-secondary-dark: #383016;
+$secondary-container-dark: #50462a;
+$on-secondary-container-dark: #f1e1bb;
+
+$tertiary-dark: #fdabf6;
+$on-tertiary-dark: #541355;
+$tertiary-container-dark: #6e2c6d;
+$on-tertiary-container-dark: #ffd6f7;
+
+$error-dark: #ffb4ab;
+$on-error-dark: #690005;
+$error-container-dark: #93000a;
+$on-error-container-dark: #ffdad6;
+
+$background-dark: #1e1b16;
+$on-background-dark: #e8e2d9;
+$surface-dark: #1e1b16;
+$on-surface-dark: #e8e2d9;
+
+$outline-dark: #979080;
+$surface-variant-dark: #4c4639;
+$on-surface-variant-dark: #cec6b4;
+
+// Shortcuts
+
+$primary: "primary";
+$on-primary: "on-primary";
+$primary-container: "primary-container";
+$on-primary-container: "on-primary-container";
+
+$secondary: "secondary";
+$on-secondary: "on-secondary";
+$secondary-container: "secondary-container";
+$on-secondary-container: "on-secondary-container";
+
+$tertiary: "tertiary";
+$on-tertiary: "$on-tertiary";
+$tertiary-container: "tertiary-container";
+$on-tertiary-container: "on-tertiary-container";
+
+$error: "error";
+$on-error: "on-error";
+$error-container: "error-container";
+$on-error-container: "on-error-container";
+
+$background: "background";
+$on-background: "on-background";
+$surface: "surface";
+$on-surface: "on-surface";
+
+$outline: "outline";
+$surface-variant: "surface-variant";
+$on-surface-variant: "on-surface-variant";
+
+$colors: (
+    primary,
+    secondary,
+    tertiary,
+    error,
+);
+
+// Themes
+
+$themes: (
+    light: (
+        primary: $primary-light,
+        on-primary: $on-primary-light,
+        primary-container: $primary-container-light,
+        on-primary-container: $on-primary-container-light,
+
+        secondary: $secondary-light, 
+        on-secondary: $on-secondary-light, 
+        secondary-container: $secondary-container-light, 
+        on-secondary-container: $on-secondary-container-light, 
+
+        tertiary: $tertiary-light, 
+        on-tertiary: $on-tertiary-light, 
+        tertiary-container: $tertiary-container-light, 
+        on-tertiary-container: $on-tertiary-container-light, 
+
+        error: $error-light, 
+        on-error: $on-error-light, 
+        error-container: $error-container-light, 
+        on-error-container: $on-error-container-light, 
+
+        background: $background-light, 
+        on-background: $on-background-light, 
+        surface: $surface-light, 
+        on-surface: $on-surface-light, 
+
+        outline: $outline-light, 
+        surface-variant: $surface-variant-light, 
+        on-surface-variant: $on-surface-variant-light, 
+    ),
+    dark: (
+        primary: $primary-dark,
+        on-primary: $on-primary-dark,
+        primary-container: $primary-container-dark,
+        on-primary-container: $on-primary-container-dark,
+
+        secondary: $secondary-dark, 
+        on-secondary: $on-secondary-dark, 
+        secondary-container: $secondary-container-dark, 
+        on-secondary-container: $on-secondary-container-dark, 
+
+        tertiary: $tertiary-dark, 
+        on-tertiary: $on-tertiary-dark, 
+        tertiary-container: $tertiary-container-dark, 
+        on-tertiary-container: $on-tertiary-container-dark, 
+
+        error: $error-dark, 
+        on-error: $on-error-dark, 
+        error-container: $error-container-dark, 
+        on-error-container: $on-error-container-dark, 
+
+        background: $background-dark, 
+        on-background: $on-background-dark, 
+        surface: $surface-dark, 
+        on-surface: $on-surface-dark, 
+
+        outline: $outline-dark, 
+        surface-variant: $surface-variant-dark, 
+        on-surface-variant: $on-surface-variant-dark, 
+    ),
+);
+
+@mixin themed() {
+    @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+        $theme-map: () !global;
+        
+        @each $key, $submap in $map {
+            $value: map-get(map-get($themes, $theme), '#{$key}');
+            $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+
+        @content;
+            $theme-map: null !global;
+        }
+    }
+
+}
+
+@function t($key) {
+    @return map-get($theme-map, $key);
+}
+
+@function t-on($key) {
+    @return map-get($theme-map, #{on-#{$key}});
+}
+
+@function t-container($key) {
+    @return map-get($theme-map, #{#{$key}-container});
+}
+
+@function t-on-container($key) {
+    @return map-get($theme-map, #{on-#{$key}-container});
+}
+
+$level-1: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+$level-2: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+$level-3: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+$level-4: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+$level-5: rgba(0, 0, 0, 0.2) 0px 7px 8px -4px, rgba(0, 0, 0, 0.14) 0px 12px 17px 2px, rgba(0, 0, 0, 0.12) 0px 5px 22px 4px;

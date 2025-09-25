@@ -1,0 +1,38 @@
+collections:
+  authors:
+    output: true
+  projects:
+    output: true
+    permalink: /:collection/:title
+  socials:
+    output: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+paginate: 9
+paginate_path: "/blog/page:num/"
+
+defaults:
+  # - scope:
+  #     path: ""
+  #     type: "authors"
+  #   values:
+  #     layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

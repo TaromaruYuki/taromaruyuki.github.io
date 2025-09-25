@@ -1,0 +1,62 @@
+---
+title: Blog
+---
+<h1>
+    {% assign len = site.posts | size %}
+    {% if len > 0 %}
+        Latest Posts
+    {% else %}
+        There are no posts to show!
+    {% endif %}
+</h1>
+
+<a href="/feed.xml" style="display: inline-block; margin-bottom: 2%;">RSS Feed</a>
+
+<div></div>
+
+<div class="row">
+    {% for post in paginator.posts %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card secondary">
+                <div class="card-container">
+                    <img src="/assets/images/posts/{{ post.image }}" alt="" style="border-radius: 12px;">
+                </div>
+                
+                <div class="content">
+                    <div class="headline">{{ post.title }}</div>
+                    <div class="subhead">{{ site.data.authors[post.author].display_name }}</div>
+                    <div class="text">{{ post.excerpt }}</div>
+                    <div class="actions">
+                        <a href="{{ post.url }}" class="btn primary">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+    <div class="btn-group">
+        {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="btn primary">Previous</a>
+        {% else %}
+            <button class="btn secondary disabled">Previous</button>
+        {% endif %}
+
+        {% for page in (1..paginator.total_pages) %}
+            {% if page == paginator.page %}
+                <button class="btn tertiary">{{ page }}</button>
+            {% elsif page == 1 %}
+                <a href="{{ '/blog' | relative_url }}" class="btn secondary">{{ page }}</a>
+            {% else %}
+                <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="btn secondary">{{ page }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | relative_url }}" class="btn primary">Next</a>
+        {% else %}
+            <button class="btn secondary disabled">Next</button>
+        {% endif %}
+    </div>
+{% endif %}

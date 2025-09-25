@@ -1,0 +1,199 @@
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 50rem;
+    padding: 0 24px;
+    height: 40px;
+    position: relative;
+    transition-duration: 0.2s;    
+    transition-property: box-shadow;
+    line-height: 40px;
+
+    &.block {
+        display: block;
+    }
+
+    &.elevated {
+        box-shadow: $level-1;
+
+        &:hover {
+            box-shadow: $level-2;
+        }
+
+        &:active {
+            box-shadow: $level-1;
+        }
+
+        @each $value in $colors {
+            &.#{$value} {
+                @include themed() {
+                    background-color: t-container($value);
+                    color: t-on-container($value);
+                }
+            }
+    
+            &.#{$value}::after {
+                @include themed() {
+                    background-color: t-on-container($value);
+                }
+            }
+        }
+
+        &.disabled,
+        &[disabled] {
+            box-shadow: none;
+            pointer-events: none;
+            
+            @include themed() {
+                background-color: rgba(t($on-surface), 0.12);
+                color: rgba(t($on-surface), 0.12);
+            }
+
+            &::after {
+                opacity: 0%;
+            }
+        }
+    }
+
+    &.outlined {
+        @each $value in $colors {
+            &.#{$value} {
+                @include themed() {
+                    background-color: transparent;
+                    color: t($value);
+                    outline: t($value) solid 1px;
+                }
+            }
+    
+            &.#{$value}::after {
+                @include themed() {
+                    background-color: t($value);
+                }
+            }
+        }
+
+        &.disabled,
+        &[disabled] {
+            @include themed() {
+                color: rgba(t($on-surface), 0.38);
+                outline: rgba(t($on-surface), 0.12) solid 1px;
+            }
+        }
+    }
+
+    &.tonal {
+        @each $value in $colors {
+            &.#{$value} {
+                @include themed() {
+                    background-color: t-container($value);
+                    color: t-on-container($value);
+                }
+            }
+    
+            &.#{$value}::after {
+                @include themed() {
+                    background-color: t-on-container($value);
+                }
+            }
+        }
+    }
+
+    @each $value in $colors {
+        &.#{$value} {
+            @include themed() {
+                background-color: t($value);
+                color: t-on($value);
+            }
+        }
+
+        &.#{$value}::after {
+            @include themed() {
+                background-color: t-on($value);
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: $level-1;
+
+        &::after {
+            opacity: 8%;
+        }
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50rem;
+        z-index: 0;
+        opacity: 0%;
+    }
+
+    & > * {
+        position: relative;
+        z-index: 10;
+    }
+
+    &.disabled,
+    &[disabled] {
+        box-shadow: none;
+        pointer-events: none;
+        
+        @include themed() {
+            background-color: rgba(t($on-surface), 0.12);
+            color: rgba(t($on-surface), 0.12);
+        }
+
+        &::after {
+            opacity: 0%;
+        }
+    }
+
+    &:active {
+        &::after {
+            opacity: 10%;
+        }
+    }
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+.btn-group {
+    display: flex;
+
+    & .btn {
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &::after {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+            &::after {
+                border-radius: 0;
+            }
+        }
+
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            &::after {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+}

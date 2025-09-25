@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+@import "reset";
+@import "colors";
+@import "button";
+@import "card";
+@import "navbar";
+@import "grid";
+@import "post";
+@import "offcanvas";
+@import "badge";
+@import "divider";
+
+@include reset;
+
+html, body, main {
+    height: 100%;
+}
+
+html {
+    transition: all 5s ease-in-out;
+}
+
+body {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+
+    @include themed() {
+        background-color: t($background);
+        color: t($on-background);
+    }
+}
+
+a.reset {
+    &, &:visited, &:hover, &:focus, &:active {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.home-img {
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px
+}
+
+.margin-clear {
+    margin: 0 !important;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.margin-bottom-small {
+    margin-bottom: 0.5rem;
+}
+
+.margin-bottom-large {
+    margin-bottom: 1.25rem;
+}

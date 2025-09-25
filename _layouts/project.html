@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="project">
+    <h1 class="title">{{ page.title }}</h1>
+    <div class="info">
+        {{ page.description }}
+
+        <div>
+            <i class="bi bi-clock-fill"></i>
+            {% if page.active[0] %}
+                {{ page.active[1] }} - Now
+            {% else %}
+                {{ page.active[1] }} - {{ page.active[2] }}
+            {% endif %}
+        </div>
+
+        <div>
+            <i class="bi bi-tags-fill"></i>
+            {% for tag in page.tags %}
+                <span class="badge large primary">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <hr>
+    
+    <div class="content">
+        {{ content }}
+    </div>
+</div>

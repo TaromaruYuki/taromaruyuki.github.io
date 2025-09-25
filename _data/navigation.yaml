@@ -1,0 +1,14 @@
+- name: Home
+  link: /
+  icon: house-fill
+- name: Blog
+  link: /blog/
+  icon: rss-fill
+- name: Projects
+  link: /projects/
+  icon: pencil-square
+- name: Contact
+  link: /socials/
+  icon: chat-fill
+# - name: About
+#   link: /about.html
