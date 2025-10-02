@@ -3,6 +3,11 @@
   icon: discord
   color: "#6577e6"
   text: "#070606"
+- name: Email
+  link: mailto:doggo@taromaruyuki.cc
+  icon: envelope-fill
+  color: "#ffdf82"
+  text: "#1e1b16"
 - name: GitHub
   link: https://github.com/TaromaruYuki
   icon: github
